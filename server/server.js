@@ -20,16 +20,13 @@ io.on('connection', function(socket) {
   //   'text': 'sun..............tu ma chuda',
   //   'sentAt': 'abhi abhi to bheja hai bro'
   // })
-  socket.emit('newMessage', {
-    'text': 'sun..............tu ma chuda',
-    'sentAt': 'abhi abhi to bheja hai bro'
-  })
+    socket.on('createMessage', function(newMessage){
+     io.emit('newMessage',{
+       from: newMessage.from,
+       text: newMessage.text,
+       createdAt: new Date().getTime()
 
-  socket.on('createEmail', function(newEmail){
-    console.log('naya email aya bhai log',newEmail);
-  })
-  socket.on('createMessage', function(newMessage){
-    console.log('naya message aya bhai log',newMessage);
+     })
   })
 
 

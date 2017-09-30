@@ -21,5 +21,6 @@ socket.on('newMessage', function(message){
 //   text: "aur bhai kaise ho?"
 // })
 socket.emit('createMessage',{
+  from: 'pramudit',
   text: "aur bhai kaise ho?"
 })
