@@ -14,7 +14,14 @@ app.use(express.static(publicPath));
 
 io.on('connection', function(socket) {
   console.log("New user connected");
-
+   socket.emit('newMessage', {
+     from: 'admin',
+     text: 'Welcome ot the chat app'
+   })
+   socket.broadcast.emit('newMessage', {
+     from: 'admin',
+     text: 'New user joined'
+   })
   // socket.emit('newEmail', {
   //   'from': 'gyanchod@lodu.com',
   //   'text': 'sun..............tu ma chuda',
