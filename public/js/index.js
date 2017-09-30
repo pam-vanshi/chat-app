@@ -15,12 +15,26 @@ socket.on('newEmail', function(email){
 
 socket.on('newMessage', function(message){
   console.log('new message',message);
+  var li = jQuery('<li></li>')
+  li.text(`${message.from}: ${message.text}`)
+  jQuery('#message').append(li);
 })
 // socket.emit('createEmail',{
 //   to: 'chutiya@gandu.com',
 //   text: "aur bhai kaise ho?"
-// })
+//})
 // socket.emit('createMessage',{
 //   from: 'pramudit',
 //   text: "aur bhai kaise ho?"
+// }, function(post) {
+//   console.log('got it',post);
 // })
+
+jQuery('#message-form').on('submit',function(e){
+  e.preventDefault();
+  socket.emit('createMessage', {
+from: 'User',
+text: jQuery('[name=message]').val()
+}, function(post) {
+  console.log("mil gaya message ");
+})})

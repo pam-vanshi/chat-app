@@ -20,9 +20,11 @@ io.on('connection', function(socket) {
   //   'from': 'gyanchod@lodu.com',
   //   'text': 'sun..............tu ma chuda',
   //   'sentAt': 'abhi abhi to bheja hai bro'
-  // })
-    socket.on('createMessage', function(newMessage){
-     io.emit('newMessage',generateMessage(newMessage.from,newMessage.text))
+  //})
+    socket.on('createMessage', function(newMessage,callback){
+      console.log("new message",newMessage);
+     io.emit('newMessage',generateMessage(newMessage.from,newMessage.text));
+     callback("Message sent successfully");
   })
 
 
